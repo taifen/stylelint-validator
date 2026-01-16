@@ -118,8 +118,34 @@ function ruleTester(rule, ruleName, testerOptions) {
                 });
             }
 
+            const wrappedRule = (primary, secondary) => {
+                const originalRule = rule(primary, secondary);
+                return (root, result) => {
+                    const stylelintProps = {
+                        config: {
+                            defaultSeverity: 'error',
+                            ignoreDisables: false,
+                            validate: true
+                        },
+                        ruleSeverities: {},
+                        customMessages: {},
+                        customUrls: {},
+                        ruleMetadata: {},
+                        disabledRanges: {},
+                        quiet: false,
+                        stylelintError: false
+                    };
+                    Object.defineProperty(result, 'stylelint', {
+                        value: stylelintProps,
+                        writable: true,
+                        enumerable: false
+                    });
+                    return originalRule(root, result);
+                };
+            };
+
             return processor
-                .use(rule(rulePrimaryOptions, ruleSecondaryOptions))
+                .use(wrappedRule(rulePrimaryOptions, ruleSecondaryOptions))
                 .process(cssString, { from: undefined, ...testerOptions.postcssOptions });
         }
 

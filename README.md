@@ -14,6 +14,11 @@ A [stylelint](http://stylelint.io/) plugin based on [csstree](https://github.com
 $ npm install --save-dev stylelint-csstree-validator
 ```
 
+### Requirements
+
+- Node.js >= 18.12.0
+- Stylelint ^16.0.0
+
 ## Usage
 
 Setup plugin in [stylelint config](http://stylelint.io/user-guide/configuration/):

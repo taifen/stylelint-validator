@@ -1,3 +1,25 @@
+## 4.0.0 (January 13, 2026)
+
+### Breaking Changes
+- **Dropped CJS support**: Now pure ESM only (requires Node.js >= 18.12.0)
+- Dropped support for Stylelint v15, now requires Stylelint ^16.0.0
+- Dropped support for Node.js v14 and v16, now requires Node.js >=18.12.0
+- Updated internal stylelint utility imports to use `.mjs` extension for v16 compatibility
+- Removed hybrid ESM/CJS build system
+
+### Added
+- Official support for Stylelint v16
+- Simplified package structure (pure ESM)
+
+### Removed
+- CJS build artifacts and scripts
+- `cjs/` directory and CJS exports
+- `rollup` dependency
+- `esm-to-cjs` build scripts
+
+### Fixed
+- Compatibility with Stylelint v16's ESM architecture
+
 ## 3.0.0 (June 12, 2023)
 
 - Added support for stylelint 15 (#53)
